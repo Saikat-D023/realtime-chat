@@ -1,20 +1,29 @@
 "use client";
+import { client } from "@/lib/client";
+import { useMutation } from "@tanstack/react-query";
 import { nanoid } from "nanoid";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-  const ANIMALS = [
-    "lion", "tiger", "bear", "wolf", "eagle", "shark", "panther", "leopard", "cheetah", "falcon"
+  const IDEOLOGY = [
+     "fascist", "socialist", "marxist", "anarchist", "capitalist", "communist", "democratic"
   ];
+
+  const HERO = [
+    "batman","superman","flash","aquaman","cyborg", "ironman", "thor", "hulk", "blackwidow", "spiderman"
+  ]
 
   const STORAGE_KEYS = "chat_username";
 
   const generateUsername = () => {
-    const word =ANIMALS[Math.floor(Math.random() * ANIMALS.length)];
-    return `anonymous-${word}-${nanoid(5)}`
+    const word1 =IDEOLOGY[Math.floor(Math.random() * IDEOLOGY.length)];
+    const word2 =HERO[Math.floor(Math.random() * HERO.length)];
+    return `${word1}-${word2}-${nanoid(5)}`
   }
 
 export default function Home() {
   const [ username, setUsername] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     const main = () => {
@@ -32,12 +41,23 @@ export default function Home() {
     main();
   }, [])
 
+  const { mutate: createRoom } = useMutation({
+    mutationFn: async () => {
+      const res = await client.room.create.post()
+
+      if(res.status === 200){
+        router.push(`/room/${res.data?.roomId}`);
+      }
+    }
+  })
+
   return (
+
    <main className="flex min-h-screen flex-col items-center justify-center p-4">
     <div className="w-full max-w-md space-y-8">
       <div className="text-center space-y-2">
         <h1 className="text-2xl font-bold tracking-tight text-green-500">
-          {">"} private_chat
+          {">"}private_chat
         </h1>
         <p className="text-zinc-500 text-sm">A private, self destructing chat room.</p>
       </div>
@@ -50,7 +70,9 @@ export default function Home() {
               <div className="flex-1 bg-zinc-950 border border-zinc-800 p-3 text-sm text-zinc-400 font-mono">{username}</div>
             </div>
           </div>
-          <button className="w-full bg-zinc-100 text-neutral-700 p-3 text-sm font-bold hover:bg-zinc-50 hover:text-black transition-colors mt-2 cursor-pointer disabled:opacity-50">
+          <button 
+          onClick={() => createRoom()}
+          className="w-full bg-zinc-100 text-neutral-700 p-3 text-sm font-bold hover:bg-zinc-50 hover:text-black transition-colors mt-2 cursor-pointer disabled:opacity-50">
             CREATE SECURE ROOM
           </button>
         </div>

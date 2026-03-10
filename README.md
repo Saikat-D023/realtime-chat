@@ -27,6 +27,23 @@ A modern real-time chat application built with **Next.js App Router**, a type-sa
 | 🗃️ **Message History** | Recent messages fetched from **Upstash Redis** on room join |
 | ⚙️ **Server-State Management** | Efficient data fetching and caching via **TanStack Query** |
 | 📱 **Responsive Design** | Fully responsive UI built with **TailwindCSS v4** |
+| 💣 **Self-Destructing Rooms** | Rooms expire via a countdown timer — all messages permanently deleted on destroy |
+
+---
+
+## 🖼️ Screenshots
+
+**Homepage — Create a Secure Room**
+![Homepage](./screenshots/01-homepage.png)
+
+**Chat Room — Real-Time Messaging**
+![Chat Room](./screenshots/02-chat-room.png)
+
+**Self-Destruct Countdown**
+![Self-Destruct Timer](./screenshots/03-destruct-countdown.png)
+
+**Room Destroyed — Messages Permanently Deleted**
+![Room Destroyed](./screenshots/04-room-destroyed.png)
 
 ---
 

@@ -6,6 +6,7 @@
 
 A modern real-time chat application built with **Next.js App Router**, a type-safe **Elysia.js** backend, and **Upstash** for serverless pub/sub and storage.
 
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-anonymous--room--chat.vercel.app-blue?style=for-the-badge)](https://anonymous-room-chat.vercel.app/)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Upstash](https://img.shields.io/badge/Upstash-Redis_&_Realtime-00E9A3?style=for-the-badge)](https://upstash.com/)
